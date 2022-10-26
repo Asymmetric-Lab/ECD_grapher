@@ -1,5 +1,5 @@
 from .File import File 
-from const.const import FACTOR_EV_NM
+from const.const import FACTOR_EV_NM, plotted
 
 import numpy as np 
 
@@ -30,7 +30,7 @@ class Ref:
     def data(self):
         return FACTOR_EV_NM/self.x, self.y
         
-    # def plot(self, ax):
-    #     plot = ax.plot(FACTOR_EV_NM/self.x, self.y, label=self.filename, color='brown')
-    #     plotted[self.filename] = plot
-    #     ax.set_title(f'{self.title} experimental peak comparison' if not args.title else args.title)
+    def plot(self, ax, t):
+        plot = ax.plot(FACTOR_EV_NM/self.x, self.y, label=self.filename, color='brown')
+        plotted[self.filename] = plot
+        ax.set_title(f'{self.title} experimental peak comparison' if not t else t)

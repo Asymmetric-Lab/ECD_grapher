@@ -25,3 +25,9 @@ class File:
     @staticmethod
     def normalise(array, norm):
         return array/(np.max(np.abs(array))) * norm
+
+    @staticmethod
+    def shift(w, rif, user_shift):
+        if not user_shift: x_shift = rif.x[rif.x_indx_peak] - w.x[w.x_indx_peak]
+        if user_shift: x_shift = user_shift
+        w.shift_ev = x_shift

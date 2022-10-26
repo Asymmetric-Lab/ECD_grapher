@@ -1,4 +1,4 @@
-from const.const import FACTOR_EV_NM, c, h, electron_volt
+from const.const import FACTOR_EV_NM, c, h, electron_volt, plotted
 from .File import File
 import numpy as np
 
@@ -89,11 +89,6 @@ class ECD:
         x, y = FACTOR_EV_NM/(self.x+self.shift_ev), self.y
         plot = ax.plot(x, y, label=self.fname.replace('_', ' '), alpha=alph)
         plotted[self.fname] = plot
-    
-    def shift(self, rif, user_shift):
-        if not user_shift: x_shift = rif.x[rif.x_indx_peak] - self.x[self.x_indx_peak]
-        if user_shift: x_shift = user_shift
-        self.shift_ev = x_shift
 
     def get_pop(self, idx, p, pff:dict=None):
         if pff: 
