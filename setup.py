@@ -22,7 +22,7 @@ def setup_grapher():
         name="ECD Grapher",
         version="1.0.0",
         url="",
-        author="cclib development team",
+        author="Asymmetric Lab development team",
         author_email="andrea.pellegrini15@unibo.it",
         maintainer="Asymmetric Lab team",
         maintainer_email="andrea.pellegrini15@unibo.it",
