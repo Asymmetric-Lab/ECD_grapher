@@ -47,6 +47,6 @@ def check_parser(args):
     if args.shift: 
         if len(args.shift)==1: 
             args.shift*=len(args.file)
-            retunr args
+            return args
         elif len(args.shift) != len(args.file):
             Exception('Number of shifts defined is not the same number of files parsed')
