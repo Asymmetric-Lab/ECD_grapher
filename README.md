@@ -6,8 +6,10 @@ Can be used to create various graphs from the same output with multiple referenc
 
 
 ```bash 
-usage: ecd.py [-h] -r REFERENCE [REFERENCE ...] [--ref_eV] [--compare] [-l LEVEL] [-i] [-il INITIAL_LAMBDA] [-fl FINAL_LAMBDA] [-fwhm FWHM] [-si SIGMA] [-sh SHIFT [SHIFT ...]] [-def DEFINITION]
-              [-n NORMALISATION] [-sc] [-sR] [-nw] [-t TITLE] [--save] [-gd GRAPH_DIRECTORY] [-p POP [POP ...]] [-pff POP_FROM_FILE]
+usage: ecd.py [-h] -r REFERENCE [REFERENCE ...] [--ref_eV] [--compare] [-l LEVEL] [-i] 
+              [-il INITIAL_LAMBDA] [-fl FINAL_LAMBDA] [-fwhm FWHM] [-si SIGMA] 
+              [-sh SHIFT [SHIFT ...]] [-def DEFINITION] [-n NORMALISATION] [-sc] [-sR] [-nw] 
+              [-t TITLE] [--save] [-gd GRAPH_DIRECTORY] [-p POP [POP ...]] [-pff POP_FROM_FILE]
               file [file ...]
 
 positional arguments:
@@ -18,7 +20,7 @@ options:
   -r REFERENCE [REFERENCE ...], --reference REFERENCE [REFERENCE ...]
                         File xy of the ECD plot sperimental
   --ref_eV              If the reference graph is ∆ε against eV, use this flag.
-  --compare             Iput file are already convoluted ECD spectra
+  --compare             Input file are already convoluted ECD spectra
   -l LEVEL, --level LEVEL
                         Define the computational level of the simulated graph
   -i, --invert          Invert the y sign, in order to obtain the enantiomer's ECD
@@ -32,7 +34,8 @@ options:
   -sh SHIFT [SHIFT ...], --shift SHIFT [SHIFT ...]
                         Define a default shift in eV. If multiple references, specify shift for each reference
   -def DEFINITION, --definition DEFINITION
-                        Definition of the spectra of eV spanned spectra. Add more points on which calculate the absortion. (MAX-MIN)*10^d. Default: 4
+                        Definition of the spectra of eV spanned spectra. Add more points on which calculate the absortion. 
+                        (MAX-MIN)*10^d. Default: 4
   -n NORMALISATION, --normalisation NORMALISATION
                         Set the normalisation range. Default: [-1, 1]
   -sc, --show_conformers
