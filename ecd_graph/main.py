@@ -3,7 +3,7 @@ from classes import *
 
 def main():
     args = parser()
-    check_parser(args)
+    args = check_parser(args)
 
     if args.save: create_folder(args.graph_directory)
 
