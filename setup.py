@@ -17,18 +17,20 @@ Topic :: Software Development :: Libraries :: Python Modules"""
 def setup_grapher():
 
     doclines = __doc__.split("\n")
-
+    with open('README.md') as f:
+        readme = f.read()
+    
     setuptools.setup(
         name="ECD Grapher",
         version="1.0.0",
-        url="",
+        url="https://github.com/Asymmetric-Lab/ECD_grapher",
         author="Asymmetric Lab development team",
         author_email="andrea.pellegrini15@unibo.it",
         maintainer="Asymmetric Lab team",
         maintainer_email="andrea.pellegrini15@unibo.it",
-        license="BSD 3-Clause License",
-        description=doclines[0],
-        long_description="\n".join(doclines[2:]),
+        license="MIT License",
+        description=__doc__,
+        long_description=readme,
         classifiers=classifiers.split("\n"),
         platforms=["Any."],
         packages=setuptools.find_packages(exclude=['*test*']),
