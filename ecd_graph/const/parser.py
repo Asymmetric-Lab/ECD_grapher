@@ -8,7 +8,7 @@ def parser():
     parser.add_argument('file', help='Log file(s) of the TD-SCF calculation', nargs='+')
     parser.add_argument('-r', '--reference', help='File xy of the ECD plot sperimental', nargs='+') #, required=True)
     parser.add_argument('--ref_eV', action='store_false', help='If the reference graph is ∆ε against eV, use this flag.')
-    parser.add_argument('--compare', action='store_true', help='Iput file are already convoluted ECD spectra')
+    parser.add_argument('--compare', action='store_true', help='Input file are already convoluted ECD spectra')
     parser.add_argument('-l', '--level', help='Define the computational level of the simulated graph')
 
 
