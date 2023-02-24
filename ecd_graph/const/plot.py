@@ -3,18 +3,26 @@ import os
 import pickle
 import numpy as np
 
-from classes.File import File
+from ecd_graph.classes.File import File
 from .report import create_report
 from .const import FACTOR_EV_NM
 
 
 
-def save_graph(graphs:list, fig, graph_directory:str):
+def save_graph(graphs:list, weighted, fig, graph_directory:str):
     with open(os.path.join(graph_directory, 'ecd.pickle'), 'wb') as f:
         pickle.dump(fig, f)
 
     for ecd in graphs:
         np.save(os.path.join(graph_directory, f"{ecd.fname}-graph.npy"), np.array([(x, y) for x, y in zip(FACTOR_EV_NM/ecd.x, ecd.y)]))
+    
+    if weighted:
+        np.save(os.path.join(graph_directory, f'weighted-graph.npy'), np.array([(x, y) for x, y in zip(FACTOR_EV_NM/weighted.x, weighted.y)]))
+
+        with open(os.path.join(graph_directory, f'weighted-graph.xy'), 'w') as f:
+            for x, y in zip(FACTOR_EV_NM/weighted.x, weighted.y):
+                f.write(f'{x} {y}\n')
+
 
     plt.savefig(os.path.join(graph_directory, 'ecd.png'), dpi=700)
 
@@ -31,13 +39,13 @@ def label_plot(ax, ax2, norm:float, initial_lambda:float, final_lambda:float):
     
 
 
-def plot(graphs:list, refs:list, shift:list, title:str, show_R:bool, norm:float, initial_lambda:float, final_lambda:float, save:bool, graph_directory:str, weighted=None, show_conformers:bool=False, no_weighted:bool=False):
+def plot(graphs:list, refs:list, shift:list|None, title:str, show_R:bool, norm:float, initial_lambda:float, final_lambda:float, save:bool, graph_directory:str, level:str, weighted=None, show_conformers:bool=False, no_weighted:bool=False):
 
-    try:
+    if len(refs) > 1:
         fig, axs = plt.subplots(ncols=1, nrows=len(refs), sharex=True)
-    except TypeError:
-        fig, axs = plt.subplots()
-        axs = [axs]
+    else:
+        fig, axs = plt.subplots(ncols=1, nrows=1)
+        axs = [axs,]
 
     for idx, ax in enumerate(axs):
 
@@ -53,7 +61,7 @@ def plot(graphs:list, refs:list, shift:list, title:str, show_R:bool, norm:float,
         if weighted:
             weighted.plot(ax)
         if refs: 
-            refs[idx].plot(ax, title)
+            refs[idx].plot(ax, level=level, t=title)
 
         if show_conformers or no_weighted:
             alp = 0.3 if weighted else 1
@@ -72,13 +80,15 @@ def plot(graphs:list, refs:list, shift:list, title:str, show_R:bool, norm:float,
         else:
             y_legend = -0.25
 
-        legend = plt.legend(
+
+
+        legend = ax.legend(
             loc='upper center', bbox_to_anchor=(0.5, y_legend), fancybox=True, shadow=True, ncol=3
         )
         
 
-        plt.tight_layout()
+    plt.tight_layout()
 
-        if save: save_graph(graphs=graphs, fig=fig, graph_directory=graph_directory)
+    if save: save_graph(graphs=graphs, weighted = weighted if weighted else None, fig=fig, graph_directory=graph_directory)
 
-        plt.show()
+    plt.show()
