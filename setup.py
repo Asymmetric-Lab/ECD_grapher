@@ -22,7 +22,7 @@ def setup_grapher():
     
     setuptools.setup(
         name="ECD Grapher",
-        version="1.0.0",
+        version="1.1.0",
         url="https://github.com/Asymmetric-Lab/ECD_grapher",
         author="Asymmetric Lab development team",
         author_email="andrea.pellegrini15@unibo.it",
