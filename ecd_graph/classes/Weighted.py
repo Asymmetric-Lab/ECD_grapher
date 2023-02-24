@@ -1,7 +1,7 @@
 from .Ecd import ECD
 from .File import File
 import numpy as np
-from const.const import FACTOR_EV_NM, plotted
+from ecd_graph.const.const import FACTOR_EV_NM, plotted
 
 
 class Weighted_Plot:
@@ -33,9 +33,10 @@ class Weighted_Plot:
         return FACTOR_EV_NM/(self.x+self.shift_ev), self.y
 
     def generate_report(self):
-        return ' | '.join([ self.filename, ' ', str(np.round(self.shift_ev, 4)), ', '.join(np.array(self.eV, dtype=str)), ', '.join(np.array(self.R, dtype=str))]) + ' | '
+        return ' | '.join([ self.filename, ' ', f'{self.shift_ev:.9f}', ', '.join(np.array(self.eV, dtype=str)), ', '.join(np.array(self.R, dtype=str))]) + ' | '
 
     def plot(self, ax):
+        print(f'Shift of weighted plot: {self.shift_ev:.4f} eV')
         x, y = FACTOR_EV_NM/(self.x+self.shift_ev), self.y
         plot = ax.plot(x, y, label=self.filename)
         plotted[self.filename] = plot

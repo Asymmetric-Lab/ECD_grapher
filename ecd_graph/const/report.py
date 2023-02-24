@@ -1,5 +1,5 @@
 import numpy as np
-from classes.Ecd import ECD
+from ecd_graph.classes.Ecd import ECD
 
 
 

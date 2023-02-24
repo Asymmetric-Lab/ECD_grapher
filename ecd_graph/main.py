@@ -3,7 +3,7 @@ from classes import *
 
 def main():
     args = parser()
-    args = check_parser(args)
+    check_parser(args)
 
     if args.save: create_folder(args.graph_directory)
 
@@ -25,7 +25,7 @@ def main():
     # get reference
     refs = None
     if args.reference:
-        refs = [Ref(i) for i in args.reference]
+        refs = [Ref(i, col_ref=args.col_ref, is_nm=args.ref_eV, norm=args.normalisation) for i in args.reference]
 
         
     # weighted graph
@@ -43,10 +43,10 @@ def main():
     for idx, i in enumerate(graphs):
         i.get_pop(idx=idx, p=args.pop, pff=pff)
     
-    if args.save: create_report(0, weighted, args.sigma, args.graph_directory , args.fwhm)
         
-    plot(graphs=graphs, refs=refs, shift=args.shift, title=args.title, show_R=args.show_R, norm=args.normalisation, initial_lambda=args.initial_lambda, final_lambda=args.final_lambda, save=args.save, graph_directory=args.graph_directory, weighted=weighted, show_conformers=args.show_conformers, no_weighted=args.no_weighted)
+    plot(graphs=graphs, refs=refs, shift=args.shift, title=args.title, show_R=args.show_R, norm=args.normalisation, initial_lambda=args.initial_lambda, final_lambda=args.final_lambda, save=args.save, level=args.level, graph_directory=args.graph_directory, weighted=weighted, show_conformers=args.show_conformers, no_weighted=args.no_weighted)
 
+    if args.save: create_report(0, weighted, args.sigma, args.graph_directory , args.fwhm)
 
 
 

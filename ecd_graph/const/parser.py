@@ -18,8 +18,7 @@ def parser():
     parser.add_argument('-fl', '--final_lambda', help='Final wavelenght. Default: %(default)s nm', default=450, type=int)
     parser.add_argument('-fwhm', help='Full width at half maximum. Defaul %(default)s eV', default=1/3, type=float)
     parser.add_argument('-si', '--sigma', help='Peak width, considered as dispertion σ for a gaussian curve', default=0, type=float)
-    parser.add_argument('-sh', '--shift', type=float, help='Define a default shift in eV. If multiple references, specify shift for each reference', nargs='+')
-
+    parser.add_argument('-sh', '--shift', type=float, help='Define a default shift in eV. Negative shifts correspond to a blue shift. If multiple references, specify shift for each reference', nargs='+')
 
 
     # graph details
@@ -29,6 +28,8 @@ def parser():
     parser.add_argument('-sR', '--show_R', help='Show Rstrenght bar in the plot (only for weightered plot)', action='store_true')
     parser.add_argument('-nw','--no_weighted', help='Do not show weighted plot on the graph. Use this for benchmarks or comparison.', action='store_true')
     parser.add_argument('-t','--title', help='Title of the graph')
+    parser.add_argument('--col_ref', help='Define the color for the reference trend. Default %(default)s', default='brown')
+
 
     parser.add_argument('--save', help='Save pickle and csvs of the graph', action='store_true')
     parser.add_argument('-gd','--graph_directory', help='Define the directory in which you want to save the files of the graph. Default: %(default)s', default='ecd_report')

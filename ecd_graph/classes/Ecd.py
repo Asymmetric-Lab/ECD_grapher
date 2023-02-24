@@ -1,4 +1,4 @@
-from const.const import FACTOR_EV_NM, c, h, electron_volt, plotted
+from ecd_graph.const.const import FACTOR_EV_NM, c, h, electron_volt, plotted
 from .File import File
 import numpy as np
 
@@ -83,7 +83,8 @@ class ECD:
         return FACTOR_EV_NM/(self.x+self.shift_ev), self.y
 
     def generate_report(self):
-        return ' | '.join([self.fname, str(np.round(self.pop, 4)), str(np.round(self.shift_ev, 4)), ', '.join(np.array(self.eV, dtype=str)), ', '.join(np.array(self.R/self.pop, dtype=str))]) + ' | '
+    
+        return ' | '.join([self.fname, str(np.round(self.pop, 4)), f'{self.shift_ev:.9f}', ', '.join(np.array(self.eV, dtype=str)), ', '.join(np.array(self.R/self.pop, dtype=str))]) + ' | '
 
     def plot(self, ax, alph):
         x, y = FACTOR_EV_NM/(self.x+self.shift_ev), self.y
